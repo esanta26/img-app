@@ -13,8 +13,8 @@ CORS(app)
 @app.route("/predict", methods=["POST"])
 def process_image():
     model_service = ModelService()
-    payload = request.form.to_dict(flat=False)
-    img = payload['image'][0]
+    payload = request.get_json()
+    img = payload['image']
     model_service = ModelService()
     prediction = model_service.predict(img)
     print(type(prediction))
